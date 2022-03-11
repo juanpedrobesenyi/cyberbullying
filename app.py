@@ -82,6 +82,7 @@ if input == text_example:
 #     lista_con_joins
 # )
 #"(a,'',red), (b,'',yellow), (c,'',green), d, e, f"
+
 #url = 'https://taxifare.lewagon.ai/predict'
 
 #params = {'text_input': input}
