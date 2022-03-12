@@ -19,5 +19,4 @@ class CleanDFTransformer(TransformerMixin, BaseEstimator):
         # Return result as dataframe for integration into ColumnTransformer
         X = X.copy()
         X =  clean_df(X)
-        print('ok')
         return X['text']
