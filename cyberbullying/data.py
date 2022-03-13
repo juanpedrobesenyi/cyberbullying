@@ -63,6 +63,7 @@ class Data:
     def save_data(self):
         self.df.to_csv(f'{self.path_data}dataset.csv', index=False)
 
+    # no se usa para entrenar
     def get_clean_data(self, datasets='all'):
         if datasets == 'all':
             return pd.read_csv(f'{self.path_data}dataset.csv')

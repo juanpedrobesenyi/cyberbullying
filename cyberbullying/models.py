@@ -4,8 +4,6 @@ import os
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
-from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score, make_scorer
-
 from sklearn.pipeline import make_pipeline
 from sklearn.compose import make_column_transformer
 
@@ -20,11 +18,11 @@ class MLModel:
         self.path_file = os.path.dirname(__file__) # no funciona en jupyter
         if kwargs is None:
             kwargs = dict()
-        min_df = kwargs.get('min_df', 3) # poner 3
+        min_df = kwargs.get('min_df', 3)
         max_df = kwargs.get('max_df', 1.0)
         max_features = kwargs.get('max_features', None)
         C = kwargs.get('C', 1)
-        class_weight_0 = kwargs.get('class_weight_0', 0.22)
+        class_weight_0 = kwargs.get('class_weight_0', 0.20)
         class_weight = {0:class_weight_0, 1:1-class_weight_0}
         penalty = kwargs.get('penalty', 'l1')
         loss = kwargs.get('loss', 'squared_hinge')
@@ -82,7 +80,7 @@ class MLModel:
         conditions = [
             (df['proba_1'] <= 0.5),
             (df['proba_1'] <= 0.65),
-            (df['proba_1'] <= 0.88),
+            (df['proba_1'] <= 0.85),
             (df['proba_1'] <= 1.0)
             ]
 
@@ -99,19 +97,21 @@ class MLModel:
         df = self.predict_all(X_test)
         return df
 
-    def predict_phrase(self, X_test):
+    def predict_phrase(self, X_test, split=None):
         prediction = self.predict(X_test)
-        df = self.predict_simple_text(X_test)
         html_phrase = ''
-        for text, color in zip(df['text'], df['color']):
-            if color == None:
-                html_phrase += f'{text} '
-            else:
-                html_phrase += f'<{color}>{text}</{color}> '
-        html_phrase = html_phrase.strip()
-        output = {'prediction': prediction[0], 'html': html_phrase}
+        if prediction == 0.0:
+            html_phrase = X_test
+        else:
+            df = self.predict_simple_text(X_test)
+            for text, color in zip(df['text'], df['color']):
+                if color == None:
+                    html_phrase += f'{text} '
+                else:
+                    html_phrase += f'<{color}>{text}</{color}> '
+            html_phrase = html_phrase.strip()
+        output = {'prediction': prediction[0], 'text': html_phrase}
         return output
-
 
     # no se usa
     def save_model(self):

@@ -14,11 +14,13 @@ def clean_text(text, remove_punctuation=True, lower_text=True,
     text = str(text)
 
     # remove twitter mentions @
-
+    regex = r'^@\w+'
+    text = re.sub(regex, ' ', text, flags=re.IGNORECASE)
 
     # keep only letters
     if remove_punctuation:
-        text = re.sub(r'[^a-zA-Z]+', ' ', text)
+        regex = r'[^a-zA-Z]+'
+        text = re.sub(regex, ' ', text)
 
     # lower text
     if lower_text:
@@ -105,7 +107,6 @@ def conf_mx_all(y_test, y_pred):
     disp.plot()
 
     return recall, precision, accuracy, F1
-
 
 def save_trained_model(model, path=None):
     """ Save the trained model into a model.joblib file """
