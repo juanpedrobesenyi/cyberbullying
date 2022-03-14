@@ -28,7 +28,6 @@ jobs:
   # - remove the 2 trailing characters "# ", do not change the spaces
   #   (the `name` keys should be at the same level as the `uses` key)
   #   (the `strategy` key should be at the same level as the `steps` key)
-
   build:
 
     runs-on: ubuntu-latest
