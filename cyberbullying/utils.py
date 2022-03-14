@@ -13,9 +13,10 @@ def clean_text(text, remove_punctuation=True, lower_text=True,
 
     text = str(text)
 
-    # remove twitter mentions @
+    # remove twitter mentions (@) and RT
     regex = r'^@\w+'
-    text = re.sub(regex, ' ', text, flags=re.IGNORECASE)
+    text = re.sub(regex, '', text, flags=re.IGNORECASE)
+    text = re.sub(r'RT[\s]+', '', text, flags=re.IGNORECASE)
 
     # keep only letters
     if remove_punctuation:
