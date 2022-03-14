@@ -15,20 +15,10 @@ h1 {
     color: red;
 }
 .stApp {
-    background-image: url(https://nordvpn.com/wp-content/uploads/2020/07/cyberbullying_1200x628.png);
+    background-image: url(https://thumbs.dreamstime.com/z/cyberbullying-concept-faceless-hooded-male-person-low-key-red-blue-lit-image-digital-glitch-effect-133406104.jpg);
     background-size: cover;
 }
 """
-st.markdown(
-    """
-<style>
-span[data-baseweb="tag"] {
-  background-color: blue !important;
-}
-</style>
-""",
-    unsafe_allow_html=True,
-)
 
 if st.checkbox('Inject CSS'):
     st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
@@ -54,12 +44,10 @@ model = get_trained_model()
 '''
 ## CYBERBULLYING DETECTION
 '''
-def borrar(text):
-    a = ""
-    return a
-
-input = st.text_input('Enter any text below:')
-st.button('Lets check it out!', on_click=borrar)
+col = st.columns(1)
+with col:
+    input = st.text_input('Enter any text below:')
+    st.button('Lets check it out!')
 
 
 response = model.predict_phrase(input)
@@ -82,6 +70,7 @@ with st.spinner(text='In progress'):
     else:
         st.success("No bullying detected")
 
-
+# cualquier_cosa = f'<div style="background-color:white;">{input}{boton}</div>'
+# st.markdown(cualquier_cosa, unsafe_allow_html=True)
 st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
-prediccion1 = st.write(text, unsafe_allow_html = True)
+st.write(text, unsafe_allow_html = True)
