@@ -4,20 +4,24 @@ import re
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-from sklearn.preprocessing import FunctionTransformer
 from sklearn.metrics import ConfusionMatrixDisplay,confusion_matrix
+import os
+import joblib
 
 def clean_text(text, remove_punctuation=True, lower_text=True,
                 remove_numbers=True, remove_stopwords=True, lemmatize=True):
 
     text = str(text)
 
-    # remove twitter mentions @
-
+    # remove twitter mentions (@) and RT
+    regex = r'^@\w+'
+    text = re.sub(regex, '', text, flags=re.IGNORECASE)
+    text = re.sub(r'RT[\s]+', '', text, flags=re.IGNORECASE)
 
     # keep only letters
     if remove_punctuation:
-        text = re.sub(r'[^a-zA-Z]+', ' ', text)
+        regex = r'[^a-zA-Z]+'
+        text = re.sub(regex, ' ', text)
 
     # lower text
     if lower_text:
@@ -104,3 +108,16 @@ def conf_mx_all(y_test, y_pred):
     disp.plot()
 
     return recall, precision, accuracy, F1
+
+def save_trained_model(model, path=None):
+    """ Save the trained model into a model.joblib file """
+    path_file = os.path.dirname(__file__) + '/../model.joblib' # no funciona en jupyter
+    if path is None:
+        path = path_file
+    joblib.dump(model, path)
+
+def get_trained_model(path=None):
+    path_file = os.path.dirname(__file__) + '/../model.joblib' # no funciona en jupyter
+    if path is None:
+        path = path_file
+    return joblib.load(path)
