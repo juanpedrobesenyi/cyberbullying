@@ -1,1 +1,1 @@
-web: pip install . -U && cyberbullying-run
+web: sh setup.sh && streamlit run app.py
