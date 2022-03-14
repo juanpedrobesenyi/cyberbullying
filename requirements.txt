@@ -8,7 +8,8 @@ wheel>=0.29
 numpy
 pandas
 scikit-learn
-
+streamlit
+nltk
 # tests/linter
 black
 coverage

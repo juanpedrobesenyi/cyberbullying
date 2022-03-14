@@ -1,0 +1,21 @@
+div[data-testid="stVerticalBlock"] {
+  background-color: rgba(187, 214, 255, 0.541);
+  padding: 16px;
+  border-radius: 3px;
+}
+.stTextInput > div {
+  width: 95%;
+}
+.stAlert > div {
+    width: 95%;
+}
+.stProgress {
+  width: 95%;
+}
+.stTextInput > div > div > input {
+  flex-grow: 1;
+}
+.stTextInput > div > div {
+  display: flex;
+  flex-wrap: wrap;
+}
