@@ -1,0 +1,83 @@
+h1 {
+  display: inline;
+}
+
+h2 {
+  display: inline;
+}
+
+.stApp {
+  background-image: url('https://thumbs.dreamstime.com/z/cyberbullying-concept-faceless-hooded-male-person-low-key-red-blue-lit-image-digital-glitch-effect-133406104.jpg');
+  background-size: cover;
+}
+
+
+div[data-testid="stImage"] {
+  display: inline-block;
+}
+
+.stCheckbox {
+  display: inline-block;
+}
+
+div[data-testid="stVerticalBlock"] {
+  background-color: rgba(187, 214, 255, 0.541);
+  padding: 16px;
+  border-radius: 3px;
+  word-break: break-all;
+}
+
+.stTextArea > div {
+  width: 95%;
+}
+
+.stAlert > div {
+    width: 95%;
+}
+
+.stAlert > div > div > div > div > p {
+  color:black;
+  font-size: 20px;
+  text-align: center;
+}
+
+.stProgress {
+  width: 95%;
+}
+
+.stSpinner > div {
+  margin-left: 40%;
+}
+
+orange {
+  background-color: OrangeRed;
+  color: white;
+  border-radius: 0.4rem;
+  color: white;
+  padding: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+yellow {
+  background-color: Orange;
+  color: black;
+  border-radius: 0.4rem;
+  color: white;
+  padding: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+red {
+  background-color: Crimson;
+  color: white;
+  border-radius: 0.4rem;
+  color: white;
+  padding: 0.2rem;
+  margin-bottom: 1rem;
+
+}
+
+.result {
+  font-size: 22px;
+  word-break: break-all;
+}
