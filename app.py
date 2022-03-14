@@ -28,11 +28,16 @@ model = get_trained_model()
 
 
 #'''## CYBERBULLYING DETECTION'''
-st.write("<h2>CYBERBULLYING DETECTION</h2>", unsafe_allow_html = True)
 
 
-image = Image.open('wagon.png')
-st.image(image, caption='Le Wagon', use_column_width=False)
+col1, col2 = st.columns((3,1))
+
+with col1:
+    st.write("<h2>CYBERBULLYING DETECTION</h2>", unsafe_allow_html = True)
+
+with col2:
+    image = Image.open('wagon.png')
+    st.image(image, caption='Le Wagon', use_column_width=False)
 
 
 input = st.text_area("Enter text")
