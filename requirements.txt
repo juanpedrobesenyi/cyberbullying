@@ -10,6 +10,7 @@ pandas
 scikit-learn
 streamlit
 nltk
+
 # tests/linter
 black
 coverage
@@ -29,3 +30,4 @@ joblib
 memoized-property
 termcolor
 streamlit_option_menu
+htbuilder
