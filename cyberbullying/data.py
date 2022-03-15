@@ -60,6 +60,30 @@ class Data:
 
         return df
 
+    def get_data_classification(self):
+        """Importa los 3 csv de classification"""
+
+        df1 = pd.read_csv(self.path_raw_data+'/classification/cyberbullying_tweets.csv')
+        df1 = df1.rename(columns={'tweet_text':'text', 'cyberbullying_type':'type'})
+        df1 = df1[df1['type']!='not_cyberbullying']
+        df1['type'] = df1['type'].str.replace('_cyberbullying', '')
+
+        df2 = pd.read_csv(self.path_raw_data+self.files['twitter_racism'], usecols=['Text', 'oh_label'])
+        df2 = df2.rename(columns={'Text':'text'})
+        df2 = df2[df2['oh_label']==1]
+        df2['type']='ethnicity'
+        df2 = df2.drop(columns='oh_label')
+
+        df3 = pd.read_csv(self.path_raw_data+self.files['twitter_sexism'], usecols=['Text', 'oh_label'])
+        df3 = df3.rename(columns={'Text':'text'})
+        df3 = df3[df3['oh_label']==1]
+        df3['type']='gender'
+        df3 = df3.drop(columns='oh_label')
+
+        df = pd.concat([df1, df2, df3])
+
+        return df
+
     def save_data(self):
         self.df.to_csv(f'{self.path_data}dataset.csv', index=False)
 
