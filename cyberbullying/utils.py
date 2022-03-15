@@ -126,7 +126,7 @@ def predict(text):
     bullying_type = None
 
     if response['prediction'] == 1:
-        bullying_type = model_classifier.predict(text)[0]
+        bullying_type = model_classifier.predict(text)[0].upper()
 
     response['type'] = bullying_type
 
