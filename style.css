@@ -1,10 +1,4 @@
-h1 {
-  display: inline;
-}
 
-h2 {
-  display: inline;
-}
 
 div[data-testid="stImage"] {
   display: inline-block;
@@ -21,12 +15,21 @@ div[data-testid="stVerticalBlock"] {
   word-break: break-all;
 }
 
+div[data-testid='column']{
+  opacity: 0.2
+}
+
+div[class='stVerticalBlock'] > div {
+  opacity: 0.35
+}
+
 .stTextArea > div {
   width: 95%;
 }
 
 .stAlert > div {
     width: 95%;
+    opacity: 1;
 }
 
 .stAlert > div > div > div > div > p {
@@ -76,10 +79,19 @@ red {
   word-break: break-all;
 }
 
-.titulo:not(div[data-testid="stVerticalBlock"]) {
-  color:black;
-  word-break: break-all;
-  position: relative;
-  left: 25px;
-  bottom: 10px;
+
+.stTextArea > label  {
+  color:white;
+  font-size: 20px;
+  text-align: center;
+}
+
+
+.title1 h2 {
+  display:inline-block;
+}
+
+.imagen {
+  float: right;
+  margin-right: 5%;
 }
