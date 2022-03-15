@@ -108,7 +108,7 @@ class MLModel:
         prediction = self.predict(X_test)
         html_phrase = ''
         if prediction == 0.0:
-            html_phrase = X_test
+            html_phrase = None
         else:
             df = self.predict_simple_text(X_test)
             for text, color in zip(df['text'], df['color']):
@@ -124,7 +124,7 @@ class MLModel:
     def save_model(self):
         """ Save the trained model into a model.joblib file """
         #path_file = os.path.dirname(__file__) # no funciona en jupyter
-        joblib.dump(self.pipeline, self.path_file+'/../model.joblib')
+        joblib.dump(self.pipeline, self.path_file+'/../model0.joblib')
 
 
 
