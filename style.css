@@ -6,12 +6,6 @@ h2 {
   display: inline;
 }
 
-.stApp {
-  background-image: url('https://thumbs.dreamstime.com/z/cyberbullying-concept-faceless-hooded-male-person-low-key-red-blue-lit-image-digital-glitch-effect-133406104.jpg');
-  background-size: cover;
-}
-
-
 div[data-testid="stImage"] {
   display: inline-block;
 }
@@ -36,7 +30,7 @@ div[data-testid="stVerticalBlock"] {
 }
 
 .stAlert > div > div > div > div > p {
-  color:black;
+  color:white;
   font-size: 20px;
   text-align: center;
 }
@@ -80,4 +74,12 @@ red {
 .result {
   font-size: 22px;
   word-break: break-all;
+}
+
+.titulo:not(div[data-testid="stVerticalBlock"]) {
+  color:black;
+  word-break: break-all;
+  position: relative;
+  left: 25px;
+  bottom: 10px;
 }
