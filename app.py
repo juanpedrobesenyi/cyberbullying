@@ -1,3 +1,4 @@
+from math import radians
 import streamlit as st
 import time
 import numpy as np
@@ -8,8 +9,6 @@ import base64
 from htbuilder import HtmlElement, div, ul, li, br, hr, a, p, img, styles, classes, fonts
 from htbuilder.units import percent, px
 from htbuilder.funcs import rgba, rgb
-
-
 
 
 ###############################################################################################
@@ -61,20 +60,21 @@ st.write(background_image_style(image_path), unsafe_allow_html=True)
 ###############################################################################################
 ### SIDE BAR###
 with st.sidebar:
-    choose = option_menu("CYBERBULLYING DETECTION APP", ["Main", "About", "I am angry", "I am angry", "I am angry"],
-                         icons=['bi bi-emoji-angry', 'bi bi-emoji-angry', 'bi bi-emoji-angry-fill', 'bi bi-emoji-angry-fill','bi bi-emoji-angry-fill'],
-                         menu_icon="app-indicator", default_index=0,
+    choose = option_menu("CYBERBULLYING DETECTION", ["MAIN", "ABOUT"],
+                         icons=['bi bi-arrow-right-square','bi bi-arrow-right-square'],
+                         menu_icon="", default_index=0,
                          styles={
-        "container": {"padding": "0.2rem", "background-color": "rgba(195, 217, 260, 0.541)"},
-        "icon": {"color": "grey", "font-size": "20px"},
+        "container": {"padding": "0.1rem", "background-color": "transparent"},
+        "icon": {"color": "red", "font-size": "20px"},
         "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "rgba(189, 215, 256, 0.541)"},
         "nav-link-selected": {"background-color": "rgba(175, 215, 260, 0.5)"},
     }
     )
 
+
 ###############################################################################################
 ### Main page ###
-if choose == "Main":
+if choose == "MAIN":
     image_path = 'frontend/wagon.png'
     image_link = 'https://www.lewagon.com/'
 
@@ -114,104 +114,72 @@ if choose == "Main":
                     st.write(f'<p class="result">{text}</p>', unsafe_allow_html = True)
             else:
                 st.success("NO BULLYING DETECTED")
-    #image = Image.open('wagon.png')
-    #st.image(image, caption='', use_column_width=False)
 
-
-
-############################################################################################
-###foooter
-
-
-
-def image(src_as_string, **style):
-    return img(src=src_as_string, style=styles(**style))
-
-
-def link(link, text, **style):
-    return a(_href=link, _target="_blank", style=styles(**style))(text)
-
-
-def layout(*args):
-
-    style = """
-    <style>
-      # MainMenu {visibility: hidden;}
-      footer {visibility: hidden;}
-     .stApp { bottom: 105px; }
-    </style>
-    """
-
-    style_div = styles(
-        position="fixed",
-        left=0,
-        bottom=0,
-        margin=px(0, 0, 0, 0),
-        width=percent(100),
-        color="grey",
-        text_align="center",
-        height="auto",
-        opacity=1
-    )
-
-    style_hr = styles(
-        display="block",
-        margin=px(8, 8, "auto", "auto"),
-        border_style="inset",
-        border_width=px(2)
-    )
-
-    body = p()
-    foot = div(
-        style=style_div
-    )(
-        hr(
-            style=style_hr
-        ),
-        body
-    )
-
-    st.markdown(style, unsafe_allow_html=True)
-
-    for arg in args:
-        if isinstance(arg, str):
-            body(arg)
-
-        elif isinstance(arg, HtmlElement):
-            body(arg)
-
-    st.markdown(str(foot), unsafe_allow_html=True)
-
-
-def footer():
-    myargs = [
-        "Made in ",
-        image('https://avatars3.githubusercontent.com/u/45109972?s=400&v=4',
-              width=px(25), height=px(25)),
-        " with ❤️ by ",
-        br(),
-        link("https://github.com/juanpedrobesenyi", "@Pepo"),
-        link("https://www.linkedin.com/in/juanpedrobesenyi/",
-             image('https://media-exp1.licdn.com/dms/image/D4E35AQGgPS7tFgNBfg/profile-framedphoto-shrink_800_800/0/1637119377864?e=1647468000&v=beta&t=qqVtRGdFllXM8FSg2eJKKkVypwoUuyBmO87Oh6NUoKM',width=px(25), height=px(25))),
-        ' -- ',link("https://github.com/pjcopado", "@Patricio Copado"),
-        link("https://www.linkedin.com/in/patricio-copado/",
-             image('https://media-exp1.licdn.com/dms/image/C4E03AQHl9QCAeTJGDA/profile-displayphoto-shrink_800_800/0/1642175322042?e=1652918400&v=beta&t=XGNLZIszFA-p1bdQqGKNsIGTNA4oC7jj8YVgJJSWXGo',width=px(25), height=px(25))),
-        ' -- ',link("https://github.com/Valengou", "@Valengou"),
-        link("https://www.linkedin.com/in/valengou/",
-             image('https://media-exp1.licdn.com/dms/image/C4D03AQHxRb4L1NMw7w/profile-displayphoto-shrink_800_800/0/1600555429971?e=1652918400&v=beta&t=5JytF9cEE_QDCivFJrkszo20VhkvsPXJWn__zOXqQQo',width=px(25), height=px(25))),
-
-    ]
-    layout(*myargs)
-
-footer()
 
 
 ###############################################################################################
 ### About page ###
 
-if choose == "About":
-    st.markdown(""" <style> .font {
-    font-size:25px ; font-family: 'Source Sans Pro'; color: black;}
-    </style> """, unsafe_allow_html=True)
-    st.markdown('<p class="font">About the Creators</p>', unsafe_allow_html=True)
-    st.write("Pepo is a github genious")
+if choose == "ABOUT":
+    def link(link, text, **style):
+        return a(_href=link, _target="_blank", style=styles(**style))(text)
+    def image(src_as_string, **style):
+        return img(src=src_as_string, style=styles(**style), )
+    ## IMAGENES NUESTRAS
+
+    pepo_link='https://media-exp1.licdn.com/dms/image/C4E03AQHYCmTaeZ9uFA/profile-displayphoto-shrink_200_200/0/1634824004682?e=1652918400&v=beta&t=fSq5yXq5JupTbGzuI127_TQlgPLaIjMC055BU5fO0t8'
+    valen_link='https://media-exp1.licdn.com/dms/image/C4D03AQHxRb4L1NMw7w/profile-displayphoto-shrink_800_800/0/1600555429971?e=1652918400&v=beta&t=5JytF9cEE_QDCivFJrkszo20VhkvsPXJWn__zOXqQQo'
+    pato_link='https://media-exp1.licdn.com/dms/image/C4E03AQHl9QCAeTJGDA/profile-displayphoto-shrink_800_800/0/1642175322042?e=1652918400&v=beta&t=XGNLZIszFA-p1bdQqGKNsIGTNA4oC7jj8YVgJJSWXGo'
+    ## FUENTES
+    st.markdown(""" <style> .font1 {
+     font-size:25px ; font-family: 'Source Sans Pro'; color: white; width:95%; word-break: break-word}
+     </style> """, unsafe_allow_html=True)
+
+    st.markdown(""" <style> .font2 { font-family: 'Source Sans Pro'; color: white; width:95%; word-break: break-word}
+     </style> """, unsafe_allow_html=True)
+
+    ## EL EQUIPO
+    st.write('''<center><div class="title1">
+             <h2>-THE TEAM-</h2>
+             </center>
+             </div>
+             ''', unsafe_allow_html=True)
+
+    st.markdown(f"""<center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{link("https://www.linkedin.com/in/juanpedrobesenyi/", image(pepo_link,width=px(100), height=px(100)))}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {link("https://www.linkedin.com/in/patricio-copado/", image(pato_link,width=px(100), height=px(100)))}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {link("https://www.linkedin.com/in/valengou/", image(valen_link,width=px(100), height=px(100)))}</center>
+                <center><p><strong>Juan Pedro Besenyi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 Patricio Copado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Valentin Gourdy</strong></p></center><br />
+             <p class='font2'> We are a team of Data Scientist part of <strong>Batch 823</strong> on <strong>Le Wagon Data Science bootcamp in Buenos Aires City. </strong> </p>""" , unsafe_allow_html=True)
+
+    ## EL OBJETIVO
+
+    st.markdown('<p class="font1"><strong>OBJECTIVE</strong></p>', unsafe_allow_html=True)
+
+    st.markdown("""
+             <p class='font2'>Motivated by the younger generations growing tendencies of spending a great amount of time
+             on Social Media Platforms, we decided to tackle down one of the main problems present everywhere:</p>
+             <center><div class="title1">
+             <h2>CYBERBULLYING</h2>
+             </div></center>
+              <p class='font2'>Virtual harassment has become increasingly common, especially among teenagers, as the digital sphere has expanded, and technology has advanced.<br />
+              Cyberbullying may be more harmful than traditional bullying, because there may be no escape.<br />
+              Research illustrates that cyberbullying adversely affects youth to a higher degree than adolescents and adults: they are still growing mentally and physically.<br />
+              Victims may have lower self-esteem, increased suicidal ideation, and a variety of emotional responses, including being scared, frustrated, angry, and depressed.</p><br />
+             """ , unsafe_allow_html=True)
+    ## EL MODELo
+
+    st.markdown('<p class="font1"><strong>DEVELOPMENT</strong></p>', unsafe_allow_html=True)
+
+    st.markdown("""<p class='font2'>
+             We have developed a <strong>Natural Language Processing algorithm</strong> to detect bullying in different texts using two main Machine Learning Models,
+            <strong>SVC (Support Vector Classiffier)</strong> to detect bully and <strong>ADABoost Classiffier</strong> to classiffy the type.<br /><br />
+            The models have been trained with more than 250k short texts containing bullying and no bullying phrases.
+            The bully phrases are also categorized in different types of categories which allows us to classiffy the type of bullying in the text in five different categories: <br />
+            <p class='font2'>&nbsp;&nbsp;&nbsp;&nbsp; 1. Religion: Any discrimination act which intentionally or unintentionally degrade another person &nbsp;&nbsp;&nbsp;&nbsp; based on the bullied individuals religion.</p>
+            <p class='font2'>&nbsp;&nbsp;&nbsp;&nbsp; 2. Gender: Any kind of threatening or harassing behaviours that are based on gender role &nbsp;&nbsp;&nbsp;&nbsp;expectations.</p>
+            <p class='font2'>&nbsp;&nbsp;&nbsp;&nbsp; 3. Ethnicity/Racial: Any kind of discrimination or bullying against an individual on the basis of their &nbsp;&nbsp;&nbsp;&nbsp; skin color, or racial or ethnic origin.</p>
+            <p class='font2'>&nbsp;&nbsp;&nbsp;&nbsp; 4. Age: It occurs when a person is treated less favourably, or not given the same opportunities as &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;others in a similar situation, because he or she is considered to be too old or too young. </p>
+            <p class='font2'> &nbsp;&nbsp;&nbsp;&nbsp; 5. Other: Other types of bullying.</p>
+            </p>""" , unsafe_allow_html=True)
