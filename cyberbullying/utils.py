@@ -127,6 +127,8 @@ def predict(text):
 
     if response['prediction'] == 1:
         bullying_type = model_classifier.predict(text)[0].upper()
+        if bullying_type == 'OTHER':
+            bullying_type = 'AGGRESSION'
 
     response['type'] = bullying_type
 

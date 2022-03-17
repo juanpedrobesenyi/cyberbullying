@@ -56,17 +56,15 @@ orange {
   background-color: OrangeRed;
   color: white;
   border-radius: 0.4rem;
-  color: white;
-  padding: 0.2rem;
+  padding: 0.1rem;
   margin-bottom: 1rem;
 }
 
 yellow {
   background-color: Orange;
-  color: black;
-  border-radius: 0.4rem;
   color: white;
-  padding: 0.2rem;
+  border-radius: 0.4rem;
+  padding: 0.1rem;
   margin-bottom: 1rem;
 }
 
@@ -74,8 +72,7 @@ red {
   background-color: Crimson;
   color: white;
   border-radius: 0.4rem;
-  color: white;
-  padding: 0.2rem;
+  padding: 0.1rem;
   margin-bottom: 1rem;
 }
 
@@ -103,4 +100,21 @@ red {
 
 .imagen > img {
   border-radius: 0.5rem;
+}
+
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.imagen-round > .column > a > img {
+  border-radius: 1rem;
 }
